@@ -1,0 +1,5 @@
+C:\Users\lucas.scheunemann\source\repos\MJCorpNegocio\bin\Debug\MJCorpNegocio.dll
+C:\Users\lucas.scheunemann\source\repos\MJCorpNegocio\bin\Debug\MJCorpNegocio.pdb
+C:\Users\lucas.scheunemann\source\repos\MJCorpNegocio\obj\Debug\MJCorpNegocio.csprojAssemblyReference.cache
+C:\Users\lucas.scheunemann\source\repos\MJCorpNegocio\obj\Debug\MJCorpNegocio.dll
+C:\Users\lucas.scheunemann\source\repos\MJCorpNegocio\obj\Debug\MJCorpNegocio.pdb
