@@ -1,0 +1,261 @@
+Orientação a objetos do zero ao avançado - 01
+
+Introdução ao curso.
+criação de classes, dividindo aplicação em camadas, desenvolvimento de qualidade, estruturação e mapeamento de
+código.
+
+" - 02.01
+
+introdução a POO e história da mesma.
+
+" - 02.02
+
+classe.
+fornece definição para os tipos de objeto
+objeto - instância de uma classe, utilizando a palavra NEW
+objetos de mesma classe possuem a mesma estrutura mas valores diferentes.
+criação de classes que interagem entre si, mantendo o código fácil de entender e simples de identificar e assimilar
+com novas funcionalidades.
+definição do que a classe deve fazer e separar funcionalidades de acordo.
+utilizar funcionalidades que podem ser reutilizadas em outras classes e que podem ser usadas em outros códigos.
+
+" - 03.01
+
+identificando classes dos requisitos
+toda aplicação começa com os requisitos de negócio
+transformar palavras dos requisitos em código limpo, de fácil manutenção e testável.
+exemplo de sistema de loja.
+
+estrutura do sistema (Levantamento de requisitos)
+
+-gerenciar clientes (residencial, Educacional e Governamental)
+-classe Cliente
+--atributos:
+	Nome do Cliente
+	Data de Nascimento
+	Endereço de Email
+	Endereço de casa 
+	Endereço do trabalho
+	Número de telefone
+--métodos:
+	validar()
+	obter()
+	salvar()
+
+gerenciar produtos atuais
+-classe Produto
+--atributos:
+	Nome do produto
+	Descrição
+	Preço atual
+--métodos:
+	validar()
+	obter()
+	salvar()
+
+sistema deve aceitar pedidos de clientes em site online ou traves do call center
+-método aceitarPedido(); em classe Pedido
+
+-classe Pedido
+--atributos:
+	Cliente
+	Data do pedido
+	Endereço de entrega
+	Data de entrega
+	Produto(s)	
+	quantidade(s)
+--métodos:
+	entregar()
+	cancelar()
+	calcularValorTotal()
+	validar()
+	obter()
+	salvar()
+
+-classe ItemDoPedido
+--atributos:
+	produto
+	quantidade
+	precoDeCompra
+--métodos:
+	validar()
+	obter()
+	salvar()
+
+sistema deve permitir cancelar pedidos que ainda não foram entregues
+-método cancelarPedido(DataDeEntrega); em classe Pedido
+if (DataDeEntrega == NULL || DataDeEntrega == DEFAULT)
+	cancelarPedido();
+
+sistema deve calcular desconto em cima do valor total do pedido de acordo com as regras:
+5% - callcenter
+15% - online
+-método desconto(preco, tipo) em classe Pedido
+--switch(tipo) 
+	case CALLCENTER:
+		return preco*0.95;
+	case ONLINE:
+		return preco*0.85;
+
+" - 03.02
+
+Abstração
+	criar classes apropriadas para executar cada finalidade do sistema sem absorver toda informação do 
+mundo real, concentrando-se no que importante para dada finalidade.
+Encapsulamento
+	encapsular a complexidade escondendo as qualidades e propriedades dentro da classe.
+	utilização de private e public, getters e setters.
+	protege os dados para evitar que outras classes e partes do sistema corrompam a informação.
+
+" - 04.01
+
+Construção, arquitetura e testes
+para implementar, começa com as classes que não possuem dependências;
+programação em camadas:
+	-(UI)Interface do Usuário: Formulários ou páginas web que são exibidas para o usuário. 
+	-(BLL)Lógica de Negócio: onde mora maior parte da complexidade, onde o software conterá maior parte da
+lógica da aplicação e das regras de negócio. Coração do software.
+	-(DAL & DTO)Acesso a dados: contém a lógica para recuperar e persistir informações no banco de dados ou 
+outro armazenamento de dados como xml.
+	-(DTO)Comum: Contém código útil para todas as camadas e outras aplicações, como Log, manipulações de
+string e envio de email.
+
+" - 04.02
+
+Recomendação de Resharper, mas vou usar VisualStudio2019
+
+" - 04.03
+
+Começo da aplicação
+variáveis privadas escritas em letra minúscula e com underline inicial (private string _nome;)
+deve adicionar uma propriedade para adicionar campo e valor dentro de set e get nas variáveis
+private.
+construção de classe cliente
+
+" - 04.04
+
+Testes automatizados
+testar uma determinada parte do nosso código para definir que tudo funcionará como planejado.
+Arrange: organiza informação que será testada.
+Act: executa o método testado.
+Assert: Verifica o resultado do teste.
+
+Teste de Unidade: isolar cada unidade de código e verificar se ele funciona conforme o esperado.
+Vantagens dos testes automatizados: 	
+	economizar tempo;
+	encontrar bugs;
+	refatorar com confiança.
+
+" - 04.05
+
+Criar teste automatizado
+criando o teste de unidade na classe Cliente, no método NomeCompleto
+
+" - 04.06
+
+trabalhando com objetos
+uso de palavra chave 'new' para criação de um objeto de uma classe.
+(Cliente cliente = new Cliente();)
+uso de palavra chave 'var' ao invés do nome da classe, deixando o código mais limpo e mais fácil de ler
+quando o tipo da varaiável foi óbvio.
+(var cliente = new Cliente();)
+quando atribuir um valor a um objeto, chamamos o setor set.
+quando chamar o valor de um objeto, chamamos o setor get.
+valores são chamados numa parte do sistema chamada Stack.
+palavra reservada static salva o valor como uma variável única não replicável da classe, referenciada
+em todos os objetos da mesma classe por meio da classe em si.
+criação de atributo static e criação de teste de unidade para a mesma.
+
+" - 05.01
+
+Métodos, construtores e validação
+criação de testes para métodos e criação de construtores para lista de clientes e para localizador de clientes.
+
+" - 05.02
+
+Assinatura do método.
+não inclui o tipo de retorno do método, deve ser único.
+sobrecarga: utilizar o mesmo método com atributos diferentes em diferentes regiões para que o método
+possa agir de forma diferente, mas executando linhas de código similares.
+contrato: quando uma classe entrega todos os atributos e métodos conforme planejado de forma que tudo
+possa ser utilizado por qualquer programa que queira utilizá-la.
+
+" - 05.03
+
+Construtores: tipo de método com o mesmo nome da classe executado toda vez que uma instância da classe é
+criada.
+construtor sem parâmetros = construtor padrão (default)
+término da construção da classe Cliente.
+
+" - 05.04
+
+inicio da construção das próximas classes
+? = tipo anulável (public int? preco)
+criação do método para entregar o pedido
+
+" - 05.05
+
+Criação do método para cancelar o pedido.
+criação da validação de entrega do pedido.
+criação da classe ItemPedido.
+
+" - 06.01
+
+Separando Responsabilidades
+numa classe é essencial de se manter com somente as responsabilidades necessárias dela.
+uma classe deve ter uma única razão de existência, assim não vira Blob.
+responsabilidades <=> acoplamento / coesão
+propriedades com múltiplos valores (atributos) devem ser usados para criar novas classes e reduzir
+o número de operações de classes primárias.
+Uso de Repository Pattern, criando uma nova classe para mexer com a conexão com o banco de dados.
+
+" - 06.02
+
+criação da classe Endereço.
+
+" - 06.03
+
+criação da classe Telefone.
+
+" - 06.04
+
+mutável x Imutável
+
+permite alteração de estado x não permite alteração de estado.
+mutável: consegue acabar gerando o objeto a ser inválido. :(
+alteração da classe telefone para que ela seja imutável
+
+" - 06.05
+
+defendendo métodos, alteração do método cancelar do Pedido para gerar exceções previsiveis e alteração
+do PedidoTeste para não executar em caso de soltar a exceção.
+
+" - 06.06
+
+criação dos repositórios, seguindo a atividade 06.01
+
+" - 07.01
+
+Estabelecendo Relacionamentos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
